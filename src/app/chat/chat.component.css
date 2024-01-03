@@ -7,6 +7,10 @@
     font-family: "Calibri", "Roboto", sans-serif;
   }
   
+  .wrapper {
+    position: relative;
+}
+  
   .chat_window {
     position: absolute;
     width: calc(100% - 20px);
@@ -20,6 +24,7 @@
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     background-color: #f8f8f8;
     overflow: hidden;
+    margin-top: -30px;
   }
   
   .top_menu {
