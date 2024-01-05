@@ -35,8 +35,8 @@
         <li *ngFor="let mensaje of mensajes">
             <div class="avatar"></div>
             <div class="text_wrapper">
-                <div class="text"><span *ngIf="mensaje.tipo=='NUEVO_USUARIO'">{{ mensaje.fecha | date:'shortTime' }} : @{{ mensaje.texto }} {{ mensaje.username }}</span></div>
-                <div class="text"><span *ngIf="mensaje.tipo=='MENSAJE'">{{ mensaje.fecha | date:'shortTime' }} {{mensaje.username}} dice: <br> {{mensaje.texto}}</span></div>
+                <div class="text"><span *ngIf="mensaje.tipo=='NUEVO_USUARIO'">{{ mensaje.fecha | date:'shortTime' }} : @{{ mensaje.texto }} <span [ngStyle]="{'color': mensaje.color}">{{ mensaje.username }}</span></span></div>
+                <div class="text"><span *ngIf="mensaje.tipo=='MENSAJE'">{{ mensaje.fecha | date:'shortTime' }} <span [ngStyle]="{'color': mensaje.color}">{{ mensaje.username }}</span> dice: <br> {{mensaje.texto}}</span></div>
             </div>
         </li>
     </ul>
