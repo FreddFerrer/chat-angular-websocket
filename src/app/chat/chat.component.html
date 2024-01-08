@@ -31,19 +31,22 @@
         </div>
         
     </div>
-    <ul class="messages">
-        <li *ngFor="let mensaje of mensajes">
-            <div class="avatar"></div>
-            <div class="text_wrapper">
-                <div class="text"><span *ngIf="mensaje.tipo=='NUEVO_USUARIO'">{{ mensaje.fecha | date:'shortTime' }} : @{{ mensaje.texto }} <span [ngStyle]="{'color': mensaje.color}">{{ mensaje.username }}</span></span></div>
-                <div class="text"><span *ngIf="mensaje.tipo=='MENSAJE'">{{ mensaje.fecha | date:'shortTime' }} <span [ngStyle]="{'color': mensaje.color}">{{ mensaje.username }}</span> dice: <br> {{mensaje.texto}}</span></div>
-            </div>
-        </li>
-    </ul>
+    <div>
+        <ul class="messages" #scrollChat [scrollTop]="scrollChat.scrollHeight">
+            <li *ngFor="let mensaje of mensajes">
+                <div class="avatar"></div>
+                <div class="text_wrapper">
+                    <div class="text"><span *ngIf="mensaje.tipo=='NUEVO_USUARIO'">{{ mensaje.fecha | date:'shortTime' }} : @{{ mensaje.texto }} <span [ngStyle]="{'color': mensaje.color}">{{ mensaje.username }}</span></span></div>
+                    <div class="text"><span *ngIf="mensaje.tipo=='MENSAJE'">{{ mensaje.fecha | date:'shortTime' }} <span [ngStyle]="{'color': mensaje.color}">{{ mensaje.username }}</span> dice: <br> {{mensaje.texto}} <hr></span></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
     <div class="bottom_wrapper clearfix flex items-center">
         <div class="message_input_wrapper flex-1 mr-2">
             <input class="message_input w-full p-2 border border-gray-300 rounded" placeholder="Mensaje..."
-                [(ngModel)]="mensaje.texto" />
+                [(ngModel)]="mensaje.texto" (keyup)="escribiendoEvento()" (keyup.enter)="enviarMensaje()"/>
         </div>
         <div class="send_message flex items-center bg-blue-500 text-white cursor-pointer" (click)="enviarMensaje()"
             >
@@ -51,5 +54,6 @@
             <div class="text">Enviar</div>
         </div>
     </div>
+    <div class="text-xs text-gray-500 ml-2">{{escribiendo}}</div>
 </div>
 
